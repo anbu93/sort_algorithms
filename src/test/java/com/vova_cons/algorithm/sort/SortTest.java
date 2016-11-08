@@ -12,9 +12,9 @@ public abstract class SortTest {
     boolean isLogging = false;
     Timer timer = new Timer();
 
-    protected abstract void sort();
+    protected abstract Sorter getSorter();
 
-    private void createRandomArrray(int n){
+    private void createRandomArray(int n){
         array = new int[n];
         for(int i = 0; i < n; i++)
             array[i] = random.nextInt(n);
@@ -34,9 +34,9 @@ public abstract class SortTest {
     }
 
     private void testRandomArrayForSize(int size){
-        createRandomArrray(size);
+        createRandomArray(size);
         timer.start();
-        sort();
+        getSorter().sort(array);
         timer.stop();
         Assert.assertTrue(getArrayString(), isSortedToUpper());
         if (isLogging)
